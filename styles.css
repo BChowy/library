@@ -24,3 +24,72 @@
   color: var(--light-color);
 }
 
+body {
+  background-color: var(--bg-color);
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.container > .add-btn {
+  position: fixed;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--dark-grey-color);
+  background-color: var(--accent-color);
+  font-size: var(--title-font);
+  font-weight: bold;
+  box-shadow: var(--shadow);
+}
+
+.container > .add-btn:hover {
+  color: var(--dark-grey-color);
+  background-color: var(--light-color);
+}
+
+header {
+  margin: 2rem;
+  padding-bottom: 2rem;
+  width: 70vw;
+  border-bottom: var(--border);
+  text-align: center;
+}
+
+header p:first-child {
+  font-size: var(--large-font);
+}
+
+header p:last-child {
+  font-size: var(--regular-font);
+}
+
+.empty {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  border: var(--border);
+  background-color: transparent;
+  cursor: pointer;
+}
+footer {
+  font-size: var(--small-font);
+  margin-top: 8rem;
+}
+
