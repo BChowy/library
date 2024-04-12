@@ -88,6 +88,57 @@ button {
   background-color: transparent;
   cursor: pointer;
 }
+
+.book {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  background-color: var(--dark-grey-color);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  /* box-shadow: var(--shadow); */
+}
+
+.book > .text p {
+  word-wrap: break-word;
+}
+
+.book > .text p:first-child {
+  font-size: var(--title-font);
+  font-weight: bold;
+}
+
+.book > .text p:nth-child(2) {
+  font-size: var(--regular-font);
+}
+
+.book > .text p:last-child {
+  font-size: var(--small-font);
+}
+
+.book > .action {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.book > .action button:hover {
+  color: var(--dark-grey-color);
+  background-color: var(--light-color);
+}
+
+
+.book > .action svg {
+  width: 1.75rem;
+  fill: var(--light-color);
+  cursor: pointer;
+}
+
+.book > .action svg:hover {
+  fill: red;
+}
+
 footer {
   font-size: var(--small-font);
   margin-top: 8rem;
