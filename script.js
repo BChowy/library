@@ -14,10 +14,15 @@ const
     CONFIRM_BTN = document.querySelector('.confirm'),
     CANCEL_BTN = document.querySelector('.cancel');
 
-const BOOK_LIST = [];
+// const BOOK_LIST = [];
+const BOOK_LIST = [
+    { title: 'The Fellowship of the Ring', author: 'J. R. R. Tolkien', pages: '482', read: true },
+    { title: 'The Two Towers', author: 'J. R. R. Tolkien', pages: '352', read: false },
+    { title: 'The Return of the King', author: 'J. R. R. Tolkien', pages: '492', read: false }
+];
+
 
 function Book(title, author, pages, read) {
-    // the constructor
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -49,27 +54,31 @@ CONFIRM_BTN.addEventListener("click", () => {
 
 CANCEL_BTN.addEventListener("click", clearAndCloseDialog);
 
+// TODO: Check fields are not empty "REQUIRED"
 
-function createBook(book) {
+function createBookText(book) {
     const
-        BOOK_CARD = document.createElement('div'),
         BOOK_CARD_TEXT = document.createElement('div'),
         BOOK_TITLE = document.createElement('p'),
         BOOK_AUTHOR = document.createElement('p'),
         BOOK_PAGES = document.createElement('p');
 
-    BOOK_CARD.classList.add('book');
+    const { title, author, pages } = book;
+
     BOOK_CARD_TEXT.classList.add('text');
 
-    BOOK_TITLE.textContent = book.title;
-    BOOK_AUTHOR.textContent = book.author;
-    BOOK_PAGES.textContent = book.pages;
+    BOOK_TITLE.textContent = title;
+    BOOK_AUTHOR.textContent = author;
+    BOOK_PAGES.textContent = pages;
 
     BOOK_CARD_TEXT.appendChild(BOOK_TITLE);
     BOOK_CARD_TEXT.appendChild(BOOK_AUTHOR);
     BOOK_CARD_TEXT.appendChild(BOOK_PAGES);
 
+    return BOOK_CARD_TEXT;
+}
 
+function createBookActions(book) {
     const svgNS = 'http://www.w3.org/2000/svg';
     const
         btnsDiv = document.createElement('div'),
@@ -78,10 +87,12 @@ function createBook(book) {
         deleteIcon = document.createElementNS(svgNS, 'svg'),
         deleteIconPath = document.createElementNS(svgNS, 'path');
 
+    const { read } = book;
+
     btnsDiv.classList.add('action');
     readBtn.textContent = 'READ';
 
-    if (book.read) readBtn.classList.add('completed');
+    if (read) readBtn.classList.add('completed');
 
     readBtn.addEventListener('click', () => {
         readBtn.classList.toggle('completed');
@@ -98,23 +109,28 @@ function createBook(book) {
         const bookToDeleteIndex = BOOK_LIST.findIndex(b => b === book); // Find the index of the book object
         if (bookToDeleteIndex > -1) {
             BOOK_LIST.splice(bookToDeleteIndex, 1); // Remove the book object from the list
-            refreshLibrary(); // Update the displayed book list
+            refreshLibrary();
         }
     });
 
     btnsDiv.appendChild(readBtn);
     btnsDiv.appendChild(deleteBtn);
 
+    return btnsDiv;
+}
 
-    BOOK_CARD.appendChild(BOOK_CARD_TEXT);
-    BOOK_CARD.appendChild(btnsDiv);
+function createBook(book) {
+    const BOOK_CARD = document.createElement('div');
+    BOOK_CARD.classList.add('book');
+
+    BOOK_CARD.appendChild(createBookText(book));
+    BOOK_CARD.appendChild(createBookActions(book));
 
     return BOOK_CARD;
 }
 
 function refreshLibrary() {
-    // Create new book card elements for each book
-    const updatedBooks = BOOK_LIST.map(createBook);
+    const updatedBooks = BOOK_LIST.map(createBook);  // Create new book card elements for each book
     LIBRARY.replaceChildren(...updatedBooks);
 
     if (!LIBRARY.hasChildNodes()) LIBRARY.appendChild(emptyLibraryMessage());
@@ -135,3 +151,5 @@ function emptyLibraryMessage() {
 
     return MESSAGE_DIV;
 }
+
+refreshLibrary();
