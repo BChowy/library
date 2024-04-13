@@ -16,6 +16,40 @@
             <p>BOOK-LIB</p>
             <p>Keep what you're reading in one place.</p>
         </header>
+        <dialog>
+            <p class="head">Add Book</p>
+            <div class="body">
+                <div>
+                    <label>Title</label>
+                    <div class="input-box">
+                        <input id="book-title" class="input-field" type="text" name="book-title">
+                        <img class="validation-icon">
+                    </div>
+                </div>
+                <div>
+                    <label>Author</label>
+                    <div class="input-box">
+                        <input id="book-author" class="input-field" type="text" name="book-author">
+                        <img class="validation-icon">
+                    </div>
+                </div>
+                <div>
+                    <label>Pages</label>
+                    <div class="input-box">
+                        <input id="book-pages" class="input-field" type="number" name="book-pages">
+                        <img class="validation-icon">
+                    </div>
+                </div>
+                <div>
+                    <input id="is-read" type="checkbox" name="is-read">
+                    <label for="is-read">Read</label>
+                </div>
+            </div>
+            <div class="buttons">
+                <button class="confirm" type="submit">Confirm</button>
+                <button class="cancel">Cancel</button>
+            </div>
+        </dialog>
         <div class="library">
             <div class="empty">
                 <h1>Your library is empty!</h1>
