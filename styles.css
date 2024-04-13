@@ -74,6 +74,14 @@ header p:last-child {
   font-size: var(--regular-font);
 }
 
+.library {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  width: 70vw;
+  /* padding-bottom: 50px; */
+}
+
 .empty {
   position: fixed;
   top: 50%;

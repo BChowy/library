@@ -49,3 +49,50 @@ CONFIRM_BTN.addEventListener("click", () => {
 CANCEL_BTN.addEventListener("click", clearAndCloseDialog);
 
 
+function createBook(book) {
+    const
+        BOOK_CARD = document.createElement('div'),
+        BOOK_CARD_TEXT = document.createElement('div'),
+        BOOK_TITLE = document.createElement('p'),
+        BOOK_AUTHOR = document.createElement('p'),
+        BOOK_PAGES = document.createElement('p');
+
+    BOOK_CARD.classList.add('book');
+    BOOK_CARD_TEXT.classList.add('text');
+
+    BOOK_TITLE.textContent = book.title;
+    BOOK_AUTHOR.textContent = book.author;
+    BOOK_PAGES.textContent = book.pages;
+
+    BOOK_CARD_TEXT.appendChild(BOOK_TITLE);
+    BOOK_CARD_TEXT.appendChild(BOOK_AUTHOR);
+    BOOK_CARD_TEXT.appendChild(BOOK_PAGES);
+
+
+    const svgNS = 'http://www.w3.org/2000/svg';
+    const
+        btnsDiv = document.createElement('div'),
+        readBtn = document.createElement('button'),
+        deleteBtn = document.createElement('a'),
+        deleteIcon = document.createElementNS(svgNS, 'svg'),
+        deleteIconPath = document.createElementNS(svgNS, 'path');
+
+    btnsDiv.classList.add('action');
+    readBtn.textContent = 'READ';
+
+    deleteIcon.setAttribute('xmlns', svgNS);
+    deleteIcon.setAttribute('viewBox', '0 0 24 24');
+    deleteIconPath.setAttribute('d', 'M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z');
+
+    deleteIcon.appendChild(deleteIconPath);
+    deleteBtn.appendChild(deleteIcon);
+    btnsDiv.appendChild(readBtn);
+    btnsDiv.appendChild(deleteBtn);
+
+
+    BOOK_CARD.appendChild(BOOK_CARD_TEXT);
+    BOOK_CARD.appendChild(btnsDiv);
+
+    return BOOK_CARD;
+}
+
