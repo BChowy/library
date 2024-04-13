@@ -43,6 +43,7 @@ ADD_BTN.addEventListener("click", () => {
 CONFIRM_BTN.addEventListener("click", () => {
     const book = new Book(TITLE_FIELD.value, AUTHOR_FIELD.value, PAGES_FIELD.value, READ_CHECKBOX.checked)
     book.addToList();
+    refreshLibrary();
     clearAndCloseDialog();
 });
 
@@ -96,3 +97,9 @@ function createBook(book) {
     return BOOK_CARD;
 }
 
+function refreshLibrary() {
+    // Create new book card elements for each book
+    const updatedBooks = BOOK_LIST.map(createBook);
+    LIBRARY.replaceChildren(...updatedBooks);
+
+}
