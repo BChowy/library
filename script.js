@@ -117,4 +117,21 @@ function refreshLibrary() {
     const updatedBooks = BOOK_LIST.map(createBook);
     LIBRARY.replaceChildren(...updatedBooks);
 
+    if (!LIBRARY.hasChildNodes()) LIBRARY.appendChild(emptyLibraryMessage());
+}
+
+function emptyLibraryMessage() {
+    const
+        MESSAGE_DIV = document.createElement('div'),
+        MESSAGE_TITLE = document.createElement('h1'),
+        MESSAGE_BODY = document.createElement('h3');
+
+    MESSAGE_DIV.classList.add('empty');
+    MESSAGE_TITLE.textContent = 'Your library is empty!';
+    MESSAGE_BODY.textContent = 'Start adding books to your library by clicking the "Add Book" button.';
+
+    MESSAGE_DIV.appendChild(MESSAGE_TITLE);
+    MESSAGE_DIV.appendChild(MESSAGE_BODY);
+
+    return MESSAGE_DIV;
 }
