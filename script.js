@@ -81,12 +81,27 @@ function createBook(book) {
     btnsDiv.classList.add('action');
     readBtn.textContent = 'READ';
 
+    if (book.read) readBtn.classList.add('completed');
+
+    readBtn.addEventListener('click', () => {
+        readBtn.classList.toggle('completed');
+    });
+
     deleteIcon.setAttribute('xmlns', svgNS);
     deleteIcon.setAttribute('viewBox', '0 0 24 24');
     deleteIconPath.setAttribute('d', 'M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z');
 
     deleteIcon.appendChild(deleteIconPath);
     deleteBtn.appendChild(deleteIcon);
+
+    deleteBtn.addEventListener('click', () => {
+        const bookToDeleteIndex = BOOK_LIST.findIndex(b => b === book); // Find the index of the book object
+        if (bookToDeleteIndex > -1) {
+            BOOK_LIST.splice(bookToDeleteIndex, 1); // Remove the book object from the list
+            refreshLibrary(); // Update the displayed book list
+        }
+    });
+
     btnsDiv.appendChild(readBtn);
     btnsDiv.appendChild(deleteBtn);
 

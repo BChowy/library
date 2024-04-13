@@ -136,6 +136,11 @@ button {
   background-color: var(--light-color);
 }
 
+.completed {
+  color: var(--dark-grey-color);
+  background-color: var(--accent-color);
+  font-weight: bold;
+}
 
 .book > .action svg {
   width: 1.75rem;
