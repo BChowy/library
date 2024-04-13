@@ -28,6 +28,14 @@ Book.prototype.addToList = function () {
     BOOK_LIST.push(this);
 };
 
+function clearAndCloseDialog() {
+    TITLE_FIELD.value = '';
+    AUTHOR_FIELD.value = ''
+    PAGES_FIELD.value = '';
+    READ_CHECKBOX.checked = false;
+    DIALOG.close();
+}
+
 ADD_BTN.addEventListener("click", () => {
     DIALOG.showModal();
 });
@@ -35,5 +43,9 @@ ADD_BTN.addEventListener("click", () => {
 CONFIRM_BTN.addEventListener("click", () => {
     const book = new Book(TITLE_FIELD.value, AUTHOR_FIELD.value, PAGES_FIELD.value, READ_CHECKBOX.checked)
     book.addToList();
+    clearAndCloseDialog();
 });
+
+CANCEL_BTN.addEventListener("click", clearAndCloseDialog);
+
 
